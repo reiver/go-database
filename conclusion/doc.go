@@ -1,5 +1,5 @@
 /*
-Package database_conclusion provides a type — ‘database_conclusion.Type’ — that can be one of three kinds of values: ‘nothing’, ‘something’, ‘error’,
+Package database_conclusion provides a type — ‘database_conclusion.Type’ — that can be one of three kinds of values: ‘nothing’, ‘something’, ‘error’.
 
 
 Nothing
