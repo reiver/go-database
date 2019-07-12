@@ -96,6 +96,22 @@ Also, there is a special error that can be created for the when a variable havin
 
 	conclusion := database_conclusion.ErrorNotLoaded("database_transaction: not loaded")
 
+Why this special error is important is that it can be detected with a type switch. I.e.,:
+
+	var conclusion database_conclusion.Type
+	
+	// ...
+	
+	if err := conclusion.Return(); nil != er {
+		switch err.(type) {
+		case database_conclusion.NotLoaded:
+			//@TODO - not loaded
+			return err
+		default:
+			//@TODO - a normal error
+			return err
+		}
+	}
 
 Example
 
