@@ -2,6 +2,8 @@ package database_row
 
 import (
 	"database/sql"
+	"errors"
+	"fmt"
 )
 
 type Type struct {
@@ -18,16 +20,31 @@ func Nothing() Type {
 	return Type{}
 }
 
-func Error(err error) Type {
+func Something(row *sql.Row) Type {
+	return Type{
+		loaded: true,
+		row: row,
+	}
+}
+
+func Err(err error) Type {
 	return Type{
 		loaded: true,
 		err: err,
 	}
 }
 
-func Something(row *sql.Row) Type {
-	return Type{
-		loaded: true,
-		row: row,
-	}
+func Error(s string) Type {
+	err := errors.New(s)
+	return Err(err)
+}
+
+func Errorf(format string, a ...interface{}) Type {
+	err := fmt.Errorf(format, a...)
+	return Err(err)
+}
+
+func ErrorNotLoaded(s string) Type {
+	err := internalNotLoaded{s}
+	return Err(err)
 }
