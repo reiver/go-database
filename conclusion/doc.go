@@ -99,6 +99,8 @@ Also, there is a special error that can be created for the when a variable havin
 
 Example
 
+Here is an example of how ‘database_conclusion.Type’ might be used:
+
 	var conclusion database_conclusion.Type = database.Open(driverName, dataSourceName).QueryRow(query).Scan(&id)
 
 	if err := conclusion.Return(); nil != err {
