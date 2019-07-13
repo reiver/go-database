@@ -16,7 +16,7 @@ func (receiver Type) QueryRow(ctx context.Context, query string, args ...interfa
 
 	db := receiver.db
 	if nil == db {
-		return database_row.Error("database_transaction: internal error: nil db")
+		return database_row.Error("database: internal error: nil db")
 	}
 
 	row := db.QueryRowContext(ctx, query, args...)
