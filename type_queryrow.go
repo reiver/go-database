@@ -19,6 +19,10 @@ func (receiver Type) QueryRow(ctx context.Context, query string, args ...interfa
 		return database_row.Error("database: internal error: nil db")
 	}
 
+	if nil == ctx {
+		ctx = context.TODO()
+	}
+
 	row := db.QueryRowContext(ctx, query, args...)
 
 	return database_row.Something(row)
